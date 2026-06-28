@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>For Silviya 💜</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ================= AMBIENT BACKGROUND (always present) ================= -->
+<div class="sky" id="sky"></div>
+<div class="stars" id="stars"></div>
+<div class="fireflies" id="fireflies"></div>
+
+<!-- ================= AUDIO =================
+     #bgMusic = continuous background track, plays across the whole site (backsong.mp3)
+     #bgm     = her favourite song, only plays on the song page when she taps play (song.mp3) -->
+<audio id="bgMusic" loop preload="none">
+  <source src="assets/music/backsong.mp3" type="audio/mpeg">
+</audio>
+<audio id="bgm" preload="none">
+  <source src="assets/music/song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- ================= BUNNY (anchor, present on every scene) ================= -->
+<div class="bunny-wrap" id="bunnyWrap">
+  <div class="speech-bubble" id="speechBubble"><span id="speechText"></span></div>
+  <div class="bunny" id="bunny">
+    <div class="bunny-ear ear-left"></div>
+    <div class="bunny-ear ear-right"></div>
+    <div class="bunny-head">
+      <div class="bunny-blush blush-left"></div>
+      <div class="bunny-blush blush-right"></div>
+      <div class="bunny-eye eye-left"><div class="eye-shine"></div></div>
+      <div class="bunny-eye eye-right"><div class="eye-shine"></div></div>
+      <div class="bunny-nose"></div>
+      <div class="bunny-mouth"></div>
+    </div>
+    <div class="bunny-body">
+      <div class="bunny-paw paw-left"></div>
+      <div class="bunny-paw paw-right"></div>
+      <div class="bunny-foot foot-left"></div>
+      <div class="bunny-foot foot-right"></div>
+      <div class="bunny-tail"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= SCENE CONTAINER ================= -->
+<main id="app">
+
+  <!-- SCENE 0: GATE -->
+  <section class="scene active" id="scene-gate" data-scene="gate">
+    <div class="card gate-card">
+      <h1 class="title-script">A little something<br>for <span class="highlight">Silviya</span> 💌</h1>
+      <p class="sub">A bunny has been waiting very patiently to show you something...</p>
+      <div class="choice-row">
+        <button class="btn btn-yes" data-action="gate-yes">Yes, show me 💜</button>
+        <button class="btn btn-no" data-action="gate-no">No</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 0b: SORRY (no path) -->
+  <section class="scene" id="scene-sorry" data-scene="sorry">
+    <div class="card">
+      <h2 class="title-script">aww... 🥺</h2>
+      <p class="sub" id="sorryText">sorry, only "yes" is allowed here. the bunny insists.</p>
+      <div class="choice-row">
+        <button class="btn btn-yes" data-action="gate-yes">Okay fine, yes 💜</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 1: WISH / CAKE -->
+  <section class="scene" id="scene-wish" data-scene="wish">
+    <div class="card wide-card">
+      <h1 class="bday-title">Happy Birthday<br><span class="highlight">Silviya</span> 🎉</h1>
+      <div class="cake-stage" id="cakeStage">
+        <div class="cake">
+          <div class="candle">
+            <div class="flame" id="flame"></div>
+          </div>
+          <div class="cake-top"></div>
+          <div class="cake-layer layer-1"></div>
+          <div class="cake-layer layer-2"></div>
+          <div class="cake-plate"></div>
+        </div>
+        <div class="confetti" id="confetti"></div>
+      </div>
+      <p class="sub" id="cakeHint">tap the candle to blow it out 🕯️</p>
+      <div class="choice-row hidden" id="wishNextRow">
+        <button class="btn btn-yes" data-action="next" data-next="song">there's more, come see 💜</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 2: SONG -->
+  <section class="scene" id="scene-song" data-scene="song">
+    <div class="card wide-card">
+      <h2 class="section-title">your song 🎵</h2>
+      <div class="vinyl-wrap">
+        <div class="vinyl" id="vinyl"></div>
+        <div class="vinyl-arm" id="vinylArm"></div>
+      </div>
+      <p class="song-name">"<span id="songTitle">Our Song</span>"</p>
+      <p class="song-line">every time this plays, I think of you — it's the one I'd pick to play forever in the background of us.</p>
+      <button class="btn btn-play" id="playSongBtn">▶ play it</button>
+      <div class="choice-row">
+        <button class="btn btn-yes" data-action="next" data-next="memories">next surprise →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 3: MEMORIES -->
+  <section class="scene" id="scene-memories" data-scene="memories">
+    <div class="card wide-card">
+      <h2 class="section-title">moments & memories 📸</h2>
+      <div class="polaroid-rail" id="polaroidRail">
+        <div class="polaroid"><img src="assets/photos/memory1.jpg" alt="memory 1"><span>that day 💫</span></div>
+        <div class="polaroid"><img src="assets/photos/memory2.jpg" alt="memory 2"><span>so good 🤍</span></div>
+        <div class="polaroid"><img src="assets/photos/memory3.jpg" alt="memory 3"><span>laughing again</span></div>
+        <div class="polaroid"><img src="assets/photos/memory4.jpg" alt="memory 4"><span>my favourite</span></div>
+      </div>
+      <div class="choice-row">
+        <button class="btn btn-yes" data-action="next" data-next="video">one more thing →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 4: VIDEO -->
+  <section class="scene" id="scene-video" data-scene="video">
+    <div class="card wide-card">
+      <h2 class="section-title">a little video, just for you 🎬</h2>
+      <div class="video-frame">
+        <video id="herVideo" controls playsinline poster="">
+          <source src="assets/video/video.mp4" type="video/mp4">
+        </video>
+      </div>
+      <div class="choice-row">
+        <button class="btn btn-yes" data-action="next" data-next="reasons">keep going →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 5: REASONS / LIKES / HATES -->
+  <section class="scene" id="scene-reasons" data-scene="reasons">
+    <div class="card wide-card">
+      <h2 class="section-title">some truths about you 🌷</h2>
+
+      <div class="list-block">
+        <h3>10 reasons I like you</h3>
+        <ol class="numbered-list" id="reasonsList">
+          <li>the way you laugh way too loud at your own jokes</li>
+          <li>you remember tiny things I forget I even said</li>
+          <li>you're stubborn in the most lovable way</li>
+          <li>you make ordinary days feel like an event</li>
+          <li>you're brutally honest, even when it's inconvenient</li>
+          <li>you care more than you let people see</li>
+          <li>your texts somehow fix bad days</li>
+          <li>you've got main-character energy, always</li>
+          <li>you're someone's safe place without trying</li>
+          <li>you're just... you. nobody does it better</li>
+        </ol>
+      </div>
+
+      <div class="list-block">
+        <h3>10 things I like about you</h3>
+        <ul class="numbered-list" id="likesList">
+          <li>that loud, full laugh</li>
+          <li>how loyal you are once you trust someone</li>
+          <li>your weirdly specific opinions about everything</li>
+          <li>the way you say exactly what you mean</li>
+          <li>how you show up for people quietly</li>
+          <li>your taste in music (mostly 😂)</li>
+          <li>the way you get excited over small things</li>
+          <li>how you never let me take myself too seriously</li>
+          <li>your patience with my nonsense</li>
+          <li>simply, how you make a room better just by being in it</li>
+        </ul>
+      </div>
+
+      <div class="list-block hate-block">
+        <h3>things I hate about you</h3>
+        <p class="hate-count">0</p>
+        <p class="hate-sub">searched everywhere. found nothing.</p>
+      </div>
+
+      <div class="choice-row">
+        <button class="btn btn-yes" data-action="next" data-next="letter">there's one more page →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 6: LETTER -->
+  <section class="scene" id="scene-letter" data-scene="letter">
+    <div class="card wide-card letter-card">
+      <h2 class="section-title">a letter for you ✉️</h2>
+      <div class="letter-paper">
+        <p>Dear Silviya,</p>
+        <p>Happy birthday. I hope this year hands you everything you deserve and a few things you didn't even know to ask for.</p>
+        <p>I'm not great at saying certain things out loud, so I built you a whole bunny instead of just texting "happy birthday" like a normal person. Read into that however you want.</p>
+        <p>You're somewhere between my best friend's level of comfort and something I don't have a clean word for yet. I'm okay leaving it unsaid for now — some things are nicer half-spoken anyway, hidden in the effort instead of the sentence.</p>
+        <p>So today, just know: you're more thought-about than you probably realize. The rest, I'll let you figure out between the lines.</p>
+        <p class="signoff">— someone who put way too many hours into this website for you</p>
+      </div>
+      <div class="choice-row">
+        <button class="btn btn-yes" data-action="next" data-next="finale">okay... show me the last page →</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCENE 7: FINALE -->
+  <section class="scene" id="scene-finale" data-scene="finale">
+    <div class="card wide-card">
+      <h2 class="bday-title">make a wish 🎂</h2>
+      <p class="sub">swipe across the cake to cut it</p>
+      <div class="finale-stage" id="finaleStage">
+        <div class="cake finale-cake" id="finaleCake">
+          <div class="candle">
+            <div class="flame" id="finaleFlame"></div>
+          </div>
+          <div class="cake-top" id="cakeTopSwipe"></div>
+          <div class="cake-layer layer-1"></div>
+          <div class="cake-layer layer-2"></div>
+          <div class="cake-plate"></div>
+          <div class="cut-line" id="cutLine"></div>
+        </div>
+        <div class="confetti" id="finaleConfetti"></div>
+      </div>
+      <h1 class="bday-title final-msg hidden" id="finalMsg">Happy Birthday<br>Silviya 💜</h1>
+    </div>
+  </section>
+
+</main>
+
+<script src="script.js"></script>
+</body>
+</html>
